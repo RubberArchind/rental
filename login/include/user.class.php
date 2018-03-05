@@ -52,7 +52,7 @@ class User {
 			$this->loggedIn($userData);
 			return $this->display();
 		} else {
-			header('location: modul.php?module=error&err=empty');
+			header('location: ../module/content.php?module=error&err=empty');
 		 /*return $this->register();*/
 		}
 
@@ -85,13 +85,15 @@ class User {
 	}
 
 	public function display() {
+    /*
 		$_SESSION['username'] = $_POST['username'];
 		$_SESSION['password'] = $_POST['password'];
 
 		print "Hello, " . $_SESSION['username'] . "<br>";
 		print "Your Password is " . $_SESSION['password'];
 		//echo "I found you!";
-
+    */
+    header('location: ../module/content.php?module=dash');
 
 	}
 

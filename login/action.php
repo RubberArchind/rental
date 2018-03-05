@@ -19,7 +19,7 @@ if ($data->success==true) {
   $user->login($username, $password);
 
 } else {
-		header('location: modul.php?module=error&err=captcha');
+		header('location: ../module/content.php?module=error&err=captcha');
 
 }
 }
