@@ -1,3 +1,40 @@
+<?php
+//including the database connection file
+include_once("../menu/classes/crud.php");
+include_once("../menu/classes/validation.php");
+
+$crud = new Crud();
+$validation = new Validation();
+
+if(isset($_POST['Submit'])) {
+    $driverid 	= $crud->escape_string($_POST['driverid']);
+    $name  = $crud->escape_string($_POST['name']);
+    $address = $crud->escape_string($_POST['address']);
+    $phone = $crud->escape_string($_POST['phone']);
+    $license = $crud->escape_string($_POST['license']);
+    $rates = $crud->escape_string($_POST['rates']);
+
+    $msg = $validation->check_empty($_POST, array('driverid', 'name', 'phone', 'license','rates'));
+
+    // checking empty fields
+    if($msg != null) {
+        echo $msg;
+        //link to the previous page
+        echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+    }
+
+    else {
+        // if all the fields are filled (not empty)
+
+        //insert data to database
+        $result = $crud->execute("INSERT INTO driver(driver_id,name,address,phone,license,rates) VALUES('$driverid','$name','$address','$phone','$license','$rates')");
+
+        //display success message
+
+        header('location:../module/content.php?module=driver&msg=success-add');
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,31 +70,44 @@
 	<div class="container-contact100">
 
 		<div class="wrap-contact100">
-			<form method="post" action="../menu/karyawan/add.php" class="contact100-form validate-form">
+			<form method="post" action="" class="contact100-form validate-form">
 				<span class="contact100-form-title">
-					Add Data Karyawan
+					Add Data Sopir
 				</span>
 
-				<div class="wrap-input100 validate-input" data-validate="NIK is required">
-					<input class="input100" type="text" maxlength="16" onkeypress="return hanyaAngka(event, false)" name="nik" placeholder="NIK (Angka 16 digit)">
+				<div class="wrap-input100 validate-input" data-validate="Cannot be empty!">
+					<input class="input100" type="text"  name="driverid" placeholder="ID Driver">
 					<span class="focus-input100-1"></span>
 					<span class="focus-input100-2"></span>
 				</div>
 
-				<div class="wrap-input100 validate-input" data-validate = "Name is required">
-					<input class="input100" type="text" name="name" placeholder="Nama">
+				<div class="wrap-input100 validate-input" data-validate = "Cannto be empty!">
+					<input class="input100" type="text" name="name" placeholder="Nama ">
 					<span class="focus-input100-1"></span>
 					<span class="focus-input100-2"></span>
 				</div>
 
-				<div class="wrap-input100 validate-input" data-validate = "Address is required">
+				<div class="wrap-input100 validate-input" data-validate = "Cannot be empty!">
 					<input class="input100" type="text" name="address" placeholder="Alamat">
 					<span class="focus-input100-1"></span>
 					<span class="focus-input100-2"></span>
 				</div>
 
-				<div class="wrap-input100 validate-input" data-validate = "Phone Number is required">
-					<input class="input100" type="text" maxlength="13" name="phone" onkeypress="return hanyaAngka(event, false)" placeholder="No. Telp">
+				<div class="wrap-input100 validate-input" data-validate = "Cannot be empty!">
+					<input class="input100" type="text" name="phone" maxlength="12" name="phone" onkeypress="return hanyaAngka(event, false)" placeholder="No.HP">
+					<span class="focus-input100-1"></span>
+					<span class="focus-input100-2"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Cannot be empty!">
+					<input class="input100" type="text" name="license" placeholder="No. SIM">
+					<span class="focus-input100-1"></span>
+					<span class="focus-input100-2"></span>
+				</div>
+
+
+				<div class="wrap-input100 validate-input" data-validate = "Cannot be empty!">
+					<input class="input100" type="text" name="rates" placeholder="Tarif (/Hari)">
 					<span class="focus-input100-1"></span>
 					<span class="focus-input100-2"></span>
 				</div>
@@ -69,15 +119,13 @@
 					</label>
 				</div>
 -->
-
 				<div class="container-contact100-form-btn">
-					<input type='button'value='Back'onClick='top.location="../module/content.php?module=employee"'class="contact100-form-btn btn-danger ">
+          <input type='button'value='Back'onClick='top.location="../module/content.php?module=vehicle"' class="contact100-form-btn btn-danger ">
 					&emsp;&emsp;&emsp;&emsp;
 					<button class="contact100-form-btn btn-success" name="Submit">
 						Submit
 					</button>
 				</div>
-
 			</form>
 		</div>
 	</div>

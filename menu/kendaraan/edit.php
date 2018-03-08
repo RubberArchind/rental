@@ -1,11 +1,53 @@
+<?php
+// including the database connection file
+include_once "../menu/classes/crud.php";
+
+$crud = new Crud();
+
+//getting id from url
+$id = $crud->escape_string($_GET['id']);
+
+//selecting data associated with this particular id
+$result = $crud->getData("SELECT * FROM vehicle WHERE id=$id");
+
+foreach ($result as $res) {
+    $no     = $res['plat'];
+    $years  = $res['years'];
+    $charge = $res['charge'];
+    $status = $res['status'];
+}
+
+if (isset($_POST['update'])) {
+    $id = $crud->escape_string($_POST['id']);
+
+    $no     = $crud->escape_string($_POST['plat']);
+    $years  = $crud->escape_string($_POST['years']);
+    $charge = $crud->escape_string($_POST['charge']);
+    $status = $crud->escape_string($_POST['status']);
+
+    // checking empty fields
+    if ($msg) {
+        echo $msg;
+        //link to the previous page
+        echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+
+    } else {
+        //updating the table
+        $result = $crud->execute("UPDATE vehicle SET plat='$no',years='$years',charge='$charge',status='$status' WHERE id=$id");
+
+        //redirectig to the display page. In our case, it is index.php
+        header("Location:../module/content.php?module=vehicle&msg=success-update");
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Add</title>
+	<title>Edit</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="../menu/images/icons/favicon.ico"/>
+	<link rel="icon" type="image/png" href="../images/icons/favicon.ico"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../menu/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -33,34 +75,40 @@
 	<div class="container-contact100">
 
 		<div class="wrap-contact100">
-			<form method="post" action="../menu/karyawan/add.php" class="contact100-form validate-form">
+			<form method="post" action="" class="contact100-form validate-form">
 				<span class="contact100-form-title">
-					Add Data Karyawan
+					Edit Data
 				</span>
-
-				<div class="wrap-input100 validate-input" data-validate="NIK is required">
-					<input class="input100" type="text" maxlength="16" onkeypress="return hanyaAngka(event, false)" name="nik" placeholder="NIK (Angka 16 digit)">
+					<div class="wrap-input100 validate-input" data-validate="Cannot be empty!">
+					<input class="input100" type="text"  name="plat" placeholder="Tanda Nomor Kendaraan / No.Plat" value="<?php echo $no ?>">
 					<span class="focus-input100-1"></span>
 					<span class="focus-input100-2"></span>
 				</div>
 
-				<div class="wrap-input100 validate-input" data-validate = "Name is required">
-					<input class="input100" type="text" name="name" placeholder="Nama">
+				<div class="wrap-input100 validate-input" data-validate = "Cannto be empty!">
+					<input class="input100" type="text" name="years" maxlength="4" onkeypress="return hanyaAngka(event, false)" placeholder="Tahun Pembuatan" value="<?php echo $years ?>">
 					<span class="focus-input100-1"></span>
 					<span class="focus-input100-2"></span>
 				</div>
 
-				<div class="wrap-input100 validate-input" data-validate = "Address is required">
-					<input class="input100" type="text" name="address" placeholder="Alamat">
+				<div class="wrap-input100 validate-input" data-validate = "Cannot be empty!">
+					<input class="input100" type="text" name="charge" placeholder="Harga sewa per hari" value="<?php echo $charge ?>">
 					<span class="focus-input100-1"></span>
 					<span class="focus-input100-2"></span>
 				</div>
 
-				<div class="wrap-input100 validate-input" data-validate = "Phone Number is required">
-					<input class="input100" type="text" maxlength="13" name="phone" onkeypress="return hanyaAngka(event, false)" placeholder="No. Telp">
+				<div class="wrap-input100 validate-input" data-validate = "Cannot be empty!">
+					<!--<input class="input100" type="text" name="status" placeholder="Status Kendaraan (tersedia/tidak)" value="<? $status ?>">-->
+					<select name="status" class="input100" tabindex="1">
+                                    <option value="" disable selected hidden><?php echo $status ?></option>
+                                    <option value="Ada">Ada</option>
+                                    <option value="Kosong">Kosong</option>
+                                </select>
+          <input type="hidden" name="id" value=<?php echo $_GET['id']; ?>
 					<span class="focus-input100-1"></span>
 					<span class="focus-input100-2"></span>
 				</div>
+
 				<!--
 				<div class="contact100-form-checkbox">
 					<input class="input-checkbox100" id="ckb1" type="checkbox" name="copy-mail">
@@ -69,15 +117,13 @@
 					</label>
 				</div>
 -->
-
 				<div class="container-contact100-form-btn">
-					<input type='button'value='Back'onClick='top.location="../module/content.php?module=employee"'class="contact100-form-btn btn-danger ">
+          <input type='button'value='Back'onClick='top.location="../module/content.php?module=vehicle"'class="contact100-form-btn btn-danger ">
 					&emsp;&emsp;&emsp;&emsp;
-					<button class="contact100-form-btn btn-success" name="Submit">
-						Submit
+					<button class="contact100-form-btn btn-success" name="update">
+						Update
 					</button>
 				</div>
-
 			</form>
 		</div>
 	</div>

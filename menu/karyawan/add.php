@@ -38,6 +38,8 @@ if(isset($_POST['Submit'])) {
         header('location:../../module/content.php?module=employee&msg=success-add');
     }
 }
+
+
 ?>
 </body>
 </html>

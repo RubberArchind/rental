@@ -49,8 +49,8 @@ $number = 0;
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+                <a class="navbar-brand" href="./"><img src="../dashboard/images/logo.png" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="./"><img src="../dashboard/images/logo2.png" alt="Logo"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -59,11 +59,11 @@ $number = 0;
                         <a href="../module/content.php?module=dash"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <!--<h3 class="menu-title">UI elements</h3>-->
-                    <li class="menu-item-has-children ">
+                    <li >
                         <a href="../module/content.php?module=employee"  aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-address-card-o"></i>Karyawan</a>
 
                     </li>
-                    <li class="menu-item-has-children active ">
+                    <li class=" active ">
                         <a href="../module/content.php?module=customer" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-child"></i>Pelanggan</a>
                       <!---  <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
@@ -72,12 +72,17 @@ $number = 0;
                       -->
                     </li>
 
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Forms</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Basic Form</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.html">Advanced Form</a></li>
-                        </ul>
+                    <li >
+                        <a href="#"  aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-handshake-o "></i>Transaksi</a>
+
+                    </li>
+
+                    <li>
+                        <a href="../module/content.php?module=vehicle" ><i class="menu-icon fa fa-car"></i>Kendaraan</a>
+                    </li>
+
+                    <li>
+                    <a href="../module/content.php?module=driver" ><i class="menu-icon fa fa-user-circle-o"></i>Sopir</a>
                     </li>
 
                     <h3 class="menu-title">Icons</h3><!-- /.menu-title -->
@@ -287,7 +292,7 @@ $number = 0;
                                   <th scope="col">Nama</th>
                                   <th scope="col">Alamat</th>
                                   <th scope="col">No. Telp</th>
-                                  <th scope="col"><a href="../module/content.php?module=add-customer" class="btn btn-success btn-xs">Add Data</a></th>
+                                  <th scope="col"><a href="../module/content.php?module=add-customer" class="btn btn-success btn-xs fa fa-plus-square" ></a></th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -309,7 +314,8 @@ $number = 0;
 	         echo "<td>".$res['name']."</td>";
 	         echo "<td>".$res['address']."</td>";
 	         echo "<td>".$res['phone']."</td>";
-					 echo "<td> <a href='../module/content.php?module=edit-customer&id=$res[id]' class='btn btn-primary btn-sm'>Edit </a>|<a href='../menu/pelanggan/delete.php?id=$res[id]' onClick=\"return confirm('Are you sure you want to delete?')\" class='btn btn-danger btn-sm'>Delete </a></td>";
+					 echo "<td> <a href='../module/content.php?module=edit-customer&id=$res[id]' class='btn btn-primary btn-md fa fa-edit'></a>
+                     <a href='../menu/pelanggan/delete.php?id=$res[id]' onClick=\"return confirm('Are you sure you want to delete?')\" class='btn btn-danger btn-md fa fa-trash-o'></a></td>";
 	     }
 	     ?>
 <!--edit.php?id=$res[id]-->

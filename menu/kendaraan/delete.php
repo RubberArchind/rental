@@ -9,10 +9,10 @@ $id = $crud->escape_string($_GET['id']);
 
 //deleting the row from table
 //$result = $crud->execute("DELETE FROM users WHERE id=$id");
-$result = $crud->delete($id, 'karyawan');
+$result = $crud->delete($id, 'vehicle');
 
 if ($result) {
     //redirecting to the display page (index.php in our case)
-    header("Location:../module/content.php?module=employee&msg=success-delete");
+    header("location:../module/content.php?module=vehicle&msg=success-delete");
 }
 ?>

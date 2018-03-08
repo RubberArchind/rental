@@ -26,6 +26,26 @@ switch ($module){
   include '../menu/karyawan/edit.php';
   break;
 
+  case "delete-employee" :
+  include '../menu/karyawan/delete.php';
+  break;
+
+  case "vehicle" :
+  include '../menu/kendaraan/index.php';
+  break;
+
+  case "add-vehicle" :
+  include '../menu/kendaraan/add.php';
+  break;
+
+  case "edit-vehicle" :
+  include '../menu/kendaraan/edit.php';
+  break;
+
+  case "delete-vehicle" :
+  include '../menu/kendaraan/delete.php';
+  break;
+
   case "customer" :
   include '../menu/pelanggan/index.php';
   break;
@@ -36,6 +56,22 @@ switch ($module){
 
   case "edit-customer" :
   include '../menu/pelanggan/edit.php';
+  break;
+
+  case "driver" :
+  include '../menu/driver/index.php';
+  break;
+
+  case "add-driver" :
+  include '../menu/driver/add.php';
+  break;
+
+  case "edit-driver" :
+  include '../menu/driver/edit.php';
+  break;
+
+  case "delete-driver" :
+  include '../menu/driver/delete.php';
   break;
 }
 
@@ -86,7 +122,7 @@ switch ($moduleerr){
     break;
 }
 
-
+/*
 $msg = empty($_GET['msg']) ? '' : $_GET['msg'];
 switch ($msg){
 
@@ -101,8 +137,8 @@ switch ($msg){
       <div id="close">
           <div class="container-popup">
               <form action="#" method="post" class="popup-form">
-                  <h1>Add data success!
-                  </h1>
+                  <h4>Add data success!
+                  </h4>
               </form>
               <a class="close" href="#close">x</a>
           </div>
@@ -122,10 +158,10 @@ switch ($msg){
       <div id="close">
           <div class="container-popup">
               <form action="#" method="post" class="popup-form">
-                  <h1>Delete data success!
-                  </h1>
+                  <h4>Delete data success!
+                  </h4>
               </form>
-              <a class="close" href="#close">x</a>
+            <a class="close" href="#close">x</a>
           </div>
       </div>
   <!-- end popup -->
@@ -143,8 +179,8 @@ switch ($msg){
       <div id="close">
           <div class="container-popup">
               <form action="#" method="post" class="popup-form">
-                  <h1>Update data success!
-                  </h1>
+                  <h4>Update data success!
+                  </h4>
               </form>
               <a class="close" href="#close">x</a>
           </div>
@@ -153,4 +189,5 @@ switch ($msg){
   ';
   break;
 }
+*/
  ?>

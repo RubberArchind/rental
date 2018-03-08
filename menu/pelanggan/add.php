@@ -29,7 +29,7 @@ if(isset($_POST['Submit'])) {
 
         //display success message
 
-        header('location:../../module/content.php?module=customer&msg=success-add');
+        header('location:../module/content.php?module=customer&msg=success-add');
     }
 }
 ?>
@@ -105,7 +105,9 @@ if(isset($_POST['Submit'])) {
 				</div>
 -->
 				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn" name="Submit">
+          <input type='button'value='Back'onClick='top.location="../module/content.php?module=employee"'class="contact100-form-btn btn-danger ">
+					&emsp;&emsp;&emsp;&emsp;
+					<button class="contact100-form-btn btn-success" name="Submit">
 						Submit
 					</button>
 				</div>

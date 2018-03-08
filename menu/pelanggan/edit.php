@@ -117,7 +117,9 @@ if(isset($_POST['update']))
 				</div>
 -->
 				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn" name="update">
+          <input type='button'value='Back'onClick='top.location="../module/content.php?module=customer"'class="contact100-form-btn btn-danger ">
+					&emsp;&emsp;&emsp;&emsp;
+					<button class="contact100-form-btn btn-success" name="update">
 						Update
 					</button>
 				</div>

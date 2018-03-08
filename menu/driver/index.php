@@ -5,10 +5,18 @@ include_once "../menu/classes/crud.php";
 $crud = new Crud();
 
 //fetching data in descending order (lastest entry first)
-$query  = "SELECT * FROM karyawan ORDER BY id DESC";
+$query  = "SELECT * FROM driver ORDER BY id DESC";
 $result = $crud->getData($query);
 //echo '<pre>'; print_r($result); exit;
 $number = 0;
+
+function rupiah($angka)
+{
+
+    $hasil_rupiah = "Rp " . number_format($angka, 2, ',', '.');
+    return $hasil_rupiah;
+
+}
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -59,11 +67,11 @@ $number = 0;
                         <a href="../module/content.php?module=dash"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <!--<h3 class="menu-title">UI elements</h3>-->
-                    <li class="active">
+                    <li >
                         <a href="../module/content.php?module=employee"  aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-address-card-o"></i>Karyawan</a>
 
                     </li>
-                    <li >
+                    <li class=" ">
                         <a href="../module/content.php?module=customer" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-child"></i>Pelanggan</a>
                       <!---  <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
@@ -73,15 +81,15 @@ $number = 0;
                     </li>
 
                     <li >
-                        <a href="#"  aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-handshake-o"></i>Transaksi</a>
+                        <a href="#"  aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-handshake-o "></i>Transaksi</a>
 
                     </li>
 
-                    <li>
+                    <li class="">
                         <a href="../module/content.php?module=vehicle" ><i class="menu-icon fa fa-car"></i>Kendaraan</a>
                     </li>
 
-                    <li>
+                    <li class="active">
                     <a href="../module/content.php?module=driver" ><i class="menu-icon fa fa-user-circle-o"></i>Sopir</a>
                     </li>
 
@@ -264,7 +272,7 @@ $number = 0;
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Karyawan</h1>
+                        <h1>Kendaraan</h1>
                     </div>
                 </div>
             </div>
@@ -273,7 +281,7 @@ $number = 0;
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Dashboard</a></li>
-                            <li class="active">Karyawan</li>
+                            <li class="active">Sopir</li>
                         </ol>
                     </div>
                 </div>
@@ -282,19 +290,19 @@ $number = 0;
                 <div class="">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Daftar Karyawan</strong>
+                            <strong class="card-title">Daftar Kendaraan</strong>
                         </div>
-
                         <div class="card-body">
                             <table style="width:100%" class="table table-striped">
                               <thead>
                                 <tr>
-                                  <th scope="col">#</th>
-
-                                  <th scope="col">Nama</th>
-                                  <th scope="col">Alamat</th>
-                                  <th scope="col">No. Telp</th>
-                                  <th scope="col"><a href="../module/content.php?module=add-employee" class="btn btn-success btn-xs fa fa-plus-square"></a></th>
+                                  <th >#</th>
+                                  <th >Id</th>
+                                  <th >Name</th>
+                                  <th >Alamat</th>
+                                  <th >No. HP</th>
+                                  <th>Tarif (/Hari) </th>
+                                  <th scope="col"><a href="../module/content.php?module=add-driver" class="btn btn-success btn-xs fa fa-plus-square"></a></th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -313,12 +321,14 @@ foreach ($result as $key => $res) {
     $number += 1;
     echo "<tr>";
     echo "<th scope='row'>$number</th>";
-
+    echo "<td>" . $res['driver_id'] . "</td>";
     echo "<td>" . $res['name'] . "</td>";
     echo "<td>" . $res['address'] . "</td>";
     echo "<td>" . $res['phone'] . "</td>";
-    echo "<td> <a href='../module/content.php?module=edit-employee&id=$res[id]' class='btn btn-primary btn-md fa fa-edit'> </a>
-    <a href='../module/content.php?module=delete-employee&id=$res[id]' onClick=\"return confirm('Are you sure you want to delete?')\" class='btn btn-danger btn-md fa fa-trash-o'></a></td>";
+    echo "<td> " . rupiah($res['rates']) . "</td>";
+
+    echo "<td> <a href='../module/content.php?module=edit-driver&id=$res[id]' class='btn btn-primary btn-md fa fa-edit'></a> 
+    <a href='../module/content.php?module=delete-driver&id=$res[id]' onClick=\"return confirm('Are you sure you want to delete?')\" class='btn btn-danger btn-md fa fa-trash-o'> </a></td>";
 }
 ?>
 <!--edit.php?id=$res[id]-->

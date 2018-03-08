@@ -20,7 +20,7 @@
             <!--
             <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
 
-            <li class="menu-item-has-children">
+            <li >
                 <a href="../module/content.php?module=employee"  aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-address-card-o"></i>Karyawan</a>
                 <!--
                 <ul class="sub-menu children dropdown-menu">
@@ -38,12 +38,25 @@
                 </ul>
               -->
             </li>
-            <li class="menu-item-has-children">
+            <li >
                 <a href="../module/content.php?module=customer"  aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-child"></i>Pelanggan</a>
                 <!--<ul class="sub-menu children dropdown-menu">
                     <li><i class="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
                     <li><i class="fa fa-table"></i><a href="tables-data.html">Data Table</a></li>
                 </ul>-->
+            </li>
+
+            <li >
+                <a href="#"  > <i class="menu-icon fa fa-handshake-o"></i>Transaksi</a>
+
+            </li>
+
+            <li>
+                <a href="../module/content.php?module=vehicle" ><i class="menu-icon fa fa-car"></i>Kendaraan</a>
+            </li>
+
+            <li>
+                <a href="../module/content.php?module=driver" ><i class="menu-icon fa fa-user-circle-o"></i>Sopir</a>
             </li>
             <!--
             <li class="menu-item-has-children dropdown">
